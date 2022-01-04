@@ -10,7 +10,7 @@ class field(render_item):
 			pygame.draw.rect(self.surface, (255,255,255), (50,50+i*150,450,10))
 		for i in range(0,4):
 			pygame.draw.rect(self.surface, (255,255,255), (50+i*150,50,10,460))
-		# draw the pieces
+		# draw the pieces to the board
 		None
 	
 	def update(self):
