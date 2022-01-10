@@ -25,9 +25,10 @@ pool = render_pool()
 am = audio_manager("")
 X = am.add("x.wav")
 O = am.add("o.wav")
+WON = am.add("won.wav")
 ## init game elements
 def init():
-	pool.add(field(screen, am, [X,O]))
+	pool.add(field(screen, am, [X,O,WON]))
 	None
 
 init()
