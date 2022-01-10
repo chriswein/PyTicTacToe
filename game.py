@@ -8,7 +8,7 @@ class field(render_item, mouse_listener):
 	current = 1
 	won = False
 	am = None
-	X,O = 0,0
+	X,O,WON = 0,0,0
 	board = [
 		[0,0,0],
 		[0,0,0],	
@@ -20,6 +20,7 @@ class field(render_item, mouse_listener):
 		self.am = audio_manager_reference
 		self.X = audio_ids[0]
 		self.O = audio_ids[1]
+		self.WON = audio_ids[2]
 
 	def draw_circle(self, x, y, radius, color):
 		""" draw the circle on the board """
@@ -66,8 +67,12 @@ class field(render_item, mouse_listener):
 		if self.board[0][2] == self.board[1][1] and self.board[1][1] == self.board[2][0] and self.board[0][2] != 0: #diagonal two
 				self.won = True
 		if self.won:
-			print("Game is won")
-
+			self.am.play(self.WON)
+			self.board = [
+				[0,0,0],
+				[0,0,0],
+				[0,0,0]
+			]
 
 	def mouse_click(self, e):
 		x,y = e[0], e[1]
