@@ -3,66 +3,45 @@ import random
 from engine import *
 from game import *
 
+# pygame constants
+width = 560
+height = 560
+fps = 60
 
-WIDTH = 560
-HEIGHT = 560
-FPS = 60
-
-# Define Colors 
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-
-## initialize pygame and create window
+# pygame initialization
 pygame.init()
-pygame.mixer.init()  ## For sound
-screen = pygame.display.set_mode((WIDTH, HEIGHT), pygame.SCALED)
+pygame.mixer.init() 
+screen = pygame.display.set_mode((width, height), pygame.SCALED)
+clock = pygame.time.Clock()
+
 pygame.display.set_caption("TicTacToe")
-clock = pygame.time.Clock()	 ## For syncing the FPS
+
 pool = render_pool()
-am = audio_manager("")
+am = audio_manager()
 X = am.add("x.wav")
 O = am.add("o.wav")
 WON = am.add("won.wav")
-## init game elements
+
 def init():
 	pool.add(field(screen, am, [X,O,WON]))
-	None
 
 init()
 ## Game loop
 running = True
 while running:
 
-	#1 Process input/events
-	clock.tick(FPS)	 ## will make the loop run at the same speed all the time
-	for event in pygame.event.get():		# gets all the events which have occured till now and keeps tab of them.
-			## listening for the the X button at the top
+	clock.tick(fps)	
+
+	for event in pygame.event.get(): # event handling
 		if event.type == pygame.QUIT:
 			running = False
 		elif event.type == pygame.MOUSEBUTTONDOWN:
-			print(event)
 			pool.mouse_down(event.pos[0],event.pos[1])
-		elif event.type == pygame.MOUSEBUTTONUP:
-			print(event)
 
+	screen.fill((0,0,0))
 
-	#2 Update
+	pool.render_and_update() # update all elements of the game
 
-
-	#3 Draw/render
-	screen.fill(BLACK)
-	pool.render_and_update()
-
-	########################
-
-	### Your code comes here
-
-	########################
-
-	## Done after drawing everything to the screen
 	pygame.display.flip()	   
 
 pygame.quit()

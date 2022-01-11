@@ -2,8 +2,11 @@ from abc import ABC, abstractmethod
 import pygame 
 
 
-# This is the baseclass of every render item.
+#
 class render_item(ABC):
+	""" 
+	This is the baseclass of every render item.
+	"""
 	pool = None
 
 	@abstractmethod
@@ -18,11 +21,17 @@ class render_item(ABC):
 		self.pool = pool
 
 class mouse_listener(ABC):
+	"""
+	Implement this class to listen to mouse events distributed by the mouse_pool
+	"""
 	@abstractmethod
 	def mouse_click(self, event):
 		pass		
 
 class mouse_pool():
+	"""
+	Register your mouse_listener here to be notified of mouse events
+	"""
 	mouse_event_listeners = []
 
 	def add_mouse_listener(self,e):
@@ -65,7 +74,7 @@ class render_pool(mouse_pool):
 class audio_manager():
 	audiofiles = {}
 	last_id = 0
-	def __init__(self, rand):
+	def __init__(self):
 		pass
 	def add(self,audiofile):
 		try:
