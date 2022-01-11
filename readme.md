@@ -13,10 +13,7 @@ The project examplifies how to use:
 - Basic pygame configuration
 
 
---- 
-
-
-### Screenshot 
+## Screenshot 
 ![Screenshot](./screenshot.jpg "Screenshot of the game")
 
 ## How to run
