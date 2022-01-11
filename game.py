@@ -5,7 +5,11 @@ from pygame import gfxdraw
 import random 
 
 class ai():
-	""" Computer player. Picks fields at random. Not the brightest. """
+	
+	""" 
+	Computer player. Picks fields at random. Not the brightest. 
+	"""
+
 	field = None
 	def __init__(self, field):
 		self.field = field
@@ -26,7 +30,11 @@ class ai():
 				self.field.is_ai_turn = False
 
 class field(render_item, mouse_listener):
-	""" Represents a field to play tictactoe in and handles the game logic. """
+	
+	""" 
+	Represents a field to play tictactoe in and handles the game logic. 
+	"""
+
 	current = 1
 	is_ai_turn = False
 	turns = 0
@@ -111,8 +119,12 @@ class field(render_item, mouse_listener):
 			self.reset()
 
 	def flip_current(self):
-		""" This function flips the variable 'current' to keep track of 
-		    which side is making a move now """
+		
+		""" 
+		This function flips the variable 'current' to keep track of 
+		which side is making a move now 
+		"""
+
 		self.current = (self.current+1)%3
 		if self.current == 0: 		
 			self.current = 1
